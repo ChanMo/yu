@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="home">
+  <div class="home__header">
+    <img src="https://s-media-cache-ak0.pinimg.com/564x/e2/f1/5d/e2f15d5aa79c066940e35738a67828b9.jpg">
+    <h6>ChanMo</h6>
+  </div>
+  <div class="home__container">
+    {% for i in range(0,3) %}
+    <div class="home__item">
+      <a href="#" class="home__item__header">
+        <img src="https://s-media-cache-ak0.pinimg.com/564x/04/f1/dd/04f1dd7caf5a8c7f2bcb58c5e22e392b.jpg">
+        <p>moumou</p>
+        <p><span>12/31 24:00</span></p>
+      </a>
+      <div class="home__item__body">
+        <p>something</p>
+        <img src="https://s-media-cache-ak0.pinimg.com/564x/4a/3e/09/4a3e093d5aed8bb554084ac851c76317.jpg">
+      </div>
+      <div class="home__item__status">
+      </div>
+      <div class="home__item__action">
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <a href="#" class="fixed-action"><i class="fa fa-edit"></a>
+</div>
+{% endblock %}
