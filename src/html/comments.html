@@ -1,0 +1,33 @@
+<div class="home__item__comments comments" id="comment_{{ i }}">
+
+  <!-- comments status -->
+  <div class="comments__header">
+    <i class="fa fa-remove" data-box-toggle="#comment_{{ i }}" onclick="return toggle_box(this)"></i>
+    <span class="float-right">1200</span>
+  </div>
+
+  <!-- comment list -->
+  <div class="comments__main">
+    {% for j in range(0,5) %}
+    <div class="comments__item">
+      <div class="comments__cover">
+        <img src="https://s-media-cache-ak0.pinimg.com/236x/37/06/65/370665bf77d0f9ff1b4dd77d01e3f560.jpg">
+      </div>
+      <div class="comments__content">
+        <p>chanmo</p>
+        <p>Merry Christmas</p>
+        <p><span>昨天25:00</span></p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- comment action -->
+  <div class="comments__action">
+    <textarea placeholder="写评论..."></textarea>
+    <i class="fa fa-send"></i>
+  </div>
+
+</div>
+<!-- comments end -->
+

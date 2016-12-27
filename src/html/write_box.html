@@ -1,0 +1,25 @@
+<!-- write box for writing -->
+<div class="write-box" id="write-box">
+  <!-- header -->
+  <div class="write-box__header">
+    <a href="#" data-box-toggle="#write-box" onclick="toggle_box(this);"><i class="fa fa-remove"></i></a>
+    <button class="button button_state_disabled">发&nbsp;布</button>
+  </div>
+
+  <!-- main -->
+  <div class="write-box__main">
+    <textarea placeholder="有什么要说的吗" rows=12></textarea>
+    <input id="image-upload" type="file" multiple onchange="handle_files(this.files, $('.write-box__images ul'))">
+  </div>
+
+  <!-- images -->
+  <div class="write-box__images">
+    <ul></ul>
+  </div>
+
+  <!-- footer -->
+  <div class="write-box__footer">
+    <i class="fa fa-camera" onclick="javascript:$('#image-upload').click();"></i>
+  </div>
+</div>
+

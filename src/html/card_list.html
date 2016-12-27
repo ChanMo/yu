@@ -1,0 +1,41 @@
+<!-- card list -->
+
+{% for i in range(0,3) %}
+<div class="home__item">
+
+  <!-- header for user cover, name, date -->
+  <div class="home__item__header">
+    <div class="user-avatar"><img src="https://s-media-cache-ak0.pinimg.com/564x/04/f1/dd/04f1dd7caf5a8c7f2bcb58c5e22e392b.jpg"></div>
+    <div class="user-info"><span>12/31 12:00</span>moumou</div>
+  </div>
+
+  <!-- main for content, images -->
+  <div class="home__item__main">
+    <p>something</p>
+    <img src="https://s-media-cache-ak0.pinimg.com/564x/4a/3e/09/4a3e093d5aed8bb554084ac851c76317.jpg">
+  </div>
+
+  <!-- status useless -->
+  <div class="home__item__status hide">
+    <span><i class="fa fa-eye"></i>20</span>
+  </div>
+
+  <!-- action for thumbs-up, comment -->
+  <div class="home__item__action">
+    <a href="#" onclick="return thumbs_up(this)">
+      <i class="fa fa-thumbs-o-up"></i><span>9</span>
+    </a>
+    <a href="#" data-box-toggle="#comment_{{ i }}" onclick="return toggle_box(this)">
+      <i class="fa fa-comments-o"></i><span>8</span>
+    </a>
+    <a href="#">
+      <i class="fa fa-heart-o"></i><span>12</span>
+    </a>
+  </div>
+
+
+  <!-- comments box -->
+  {% include 'comments.html' %}
+
+</div>
+{% endfor %}

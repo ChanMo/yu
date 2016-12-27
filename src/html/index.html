@@ -1,30 +1,84 @@
 {% extends "base.html" %}
+
+{% set nav_list=['全部','热门','其他其他','年度最佳','上升最快'] %}
+
 {% block main %}
 <div class="home">
-  <div class="home__header">
-    <img src="https://s-media-cache-ak0.pinimg.com/564x/e2/f1/5d/e2f15d5aa79c066940e35738a67828b9.jpg">
-    <h6>ChanMo</h6>
-  </div>
-  <div class="home__container">
-    {% for i in range(0,3) %}
-    <div class="home__item">
-      <a href="#" class="home__item__header">
-        <img src="https://s-media-cache-ak0.pinimg.com/564x/04/f1/dd/04f1dd7caf5a8c7f2bcb58c5e22e392b.jpg">
-        <p>moumou</p>
-        <p><span>12/31 24:00</span></p>
-      </a>
-      <div class="home__item__body">
-        <p>something</p>
-        <img src="https://s-media-cache-ak0.pinimg.com/564x/4a/3e/09/4a3e093d5aed8bb554084ac851c76317.jpg">
-      </div>
-      <div class="home__item__status">
-      </div>
-      <div class="home__item__action">
-      </div>
-    </div>
-    {% endfor %}
+
+  <!-- nav list -->
+  <div class="home__nav">
+    <ul>
+      {% for i in nav_list %}
+      <li {% if loop.first %}class="active"{% endif %}>
+        <a href="#">{{ i }}</a>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
 
-  <a href="#" class="fixed-action"><i class="fa fa-edit"></a>
+  <!-- container -->
+  <div class="home__container">
+  </div>
+
+  <!-- fixed button -->
+  <a class="fixed-action" data-box-toggle="#write-box" onclick="return toggle_box(this);images=[];">
+    <i class="fa fa-edit"></i>
+  </a>
+
 </div>
+
+
+<!-- write box -->
+{% include 'write_box.html' %}
+
+{% endblock %}
+{% block js %}
+<script>
+$(function(){
+
+  images = []; // images for upload
+
+  load_more(true); // load first 
+
+  w_height = $(window).height();
+  d_scroll = 0;
+  d_height = 0;
+
+  window.addEventListener('scroll', fixed_topbar, false);
+  window.addEventListener('scroll', window_scroll, false);
+
+  /** home nav **/
+  $(".home__nav li").on("click", function(e){
+    e.preventDefault();
+    $(this).addClass("active");
+    $(this).siblings(".active").removeClass("active");
+    load_more(true);
+  });
+
+  /** textarea **/
+  $("textarea").on("input", function(e){
+    if($(this).val()){
+      $(".write-box__header button").removeClass("button_state_disabled");
+    }else{
+      $(".write-box__header button").addClass("button_state_disabled");
+    }
+  });
+
+  /** post **/
+  $(".write-box__header button").on("click", function(e){
+    e.preventDefault();
+    if(!$(this).hasClass("button_state_disabled") && !$(this).hasClass("button_state_wait")) {
+      $(this).addClass("button_state_wait");
+      var content = $("textarea").val();
+      $.ajax({
+        url: 'http://localhost:3000/',
+        type: 'POST',
+        data: {'images':JSON.stringify(images),'content':content},
+        success: function(result){
+        }
+      });
+    }
+  });
+});
+</script>
 {% endblock %}
